@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const database_service_1 = require("./database/services/database.service");
-const index_1 = __importDefault(require("./routes/index"));
+const ingredients_1 = __importDefault(require("./routes/ingredients"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = 7000;
@@ -20,7 +20,7 @@ app.use(function (req, res, next) {
 });
 (0, database_service_1.connectDb)()
     .then(() => {
-    app.use('/', index_1.default);
+    app.use('/ingredients', ingredients_1.default);
     app.listen(port, () => {
         console.log(`⚡️[server]: Server is running at https://localhost:${port}`);
     });

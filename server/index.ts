@@ -2,7 +2,7 @@ import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import { connectDb } from './database/services/database.service';
 
-import indexRouter from './routes/index';
+import ingredients from './routes/ingredients';
 
 dotenv.config();
 
@@ -27,7 +27,7 @@ app.use(function (req: Request, res: Response, next) {
 
 connectDb()
   .then(() => {
-    app.use('/', indexRouter);
+    app.use('/ingredients', ingredients);
 
     app.listen(port, () => {
       console.log(

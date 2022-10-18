@@ -3,8 +3,8 @@ import Button from 'components/Atoms/Button';
 import InputBox from 'components/Atoms/InputBox';
 import Select from 'components/Atoms/Select';
 import IngredientsList from '../IngredientsList';
-import { useAppSelector, useAppDispatch } from 'redux/hooks';
-import { addIngredient } from 'redux/states/ingredientsState';
+import { useAppSelector } from 'redux/hooks';
+import postIngredients from './postIngredients';
 
 interface StateTypes {
   input: string;
@@ -15,7 +15,6 @@ type OnChangeElement = HTMLInputElement | HTMLSelectElement;
 
 function AddIngredient(): JSX.Element {
   const ingredientsState = useAppSelector((state) => state.ingredients);
-  const dispatch = useAppDispatch();
 
   const [newItem, setNewItem] = React.useState<StateTypes>({
     input: '',
@@ -35,7 +34,8 @@ function AddIngredient(): JSX.Element {
   };
 
   const handleClick = () => {
-    dispatch(addIngredient({ itemType: newItem.select, item: newItem.input }));
+    if (newItem.input !== '')
+      postIngredients({ _id: newItem.input, type: newItem.select });
   };
 
   return (

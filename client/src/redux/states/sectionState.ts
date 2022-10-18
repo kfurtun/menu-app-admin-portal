@@ -2,8 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
 interface Sections {
-  [ingredients: string]: Boolean;
-  menuItems: Boolean;
+  [key: string]: Boolean;
 }
 
 interface Payload {

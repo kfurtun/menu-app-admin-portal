@@ -1,25 +1,23 @@
 import React from 'react';
-import { useAppSelector } from 'redux/hooks';
-import Ingredients from 'components/Molecules/AddIngredient';
-// import { showSection } from '../../redux/states/sectionState';
+import { useAppSelector, useAppDispatch } from 'redux/hooks';
+import AddIngredient from 'components/Molecules/AddIngredient';
+import { showIngredients } from 'redux/states/ingredientsState';
 import Section from 'components/Molecules/Section';
+import IngredientsList from 'components/Molecules/IngredientsList';
+import getIngredients from 'components/Molecules/IngredientsList/getIngredients';
 // import { proxy } from 'constants/constants';
 // const axios = require('axios').default;
 
 function App() {
   const showSections = useAppSelector((state) => state.sections);
-  const showIngredients = useAppSelector((state) => state.ingredients);
-  console.log(showIngredients);
-  // const dispatch = useAppDispatch();
+  const ingredients = useAppSelector((state) => state.ingredients);
+  console.log(ingredients);
+  const dispatch = useAppDispatch();
   // const [state, setState] = React.useState<string[]>([]);
 
-  // React.useEffect(() => {
-  //   const getData = async () => {
-  //     const { data } = await axios.get(`${proxy}/`);
-  //     setState(data);
-  //   };
-  //   getData();
-  // }, []);
+  React.useEffect(() => {
+    getIngredients().then((data) => dispatch(showIngredients(data)));
+  }, []);
 
   return (
     <div>
@@ -28,7 +26,8 @@ function App() {
         title="Ingredients"
         type="ingredients"
       >
-        <Ingredients />
+        <IngredientsList />
+        <AddIngredient />
       </Section>
       <Section
         show={showSections.menuItems}

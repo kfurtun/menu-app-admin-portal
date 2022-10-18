@@ -1,7 +1,6 @@
-export interface IngredientsState {
-  [pastas: string]: string[];
-  sauces: string[];
-  meats: string[];
-  veggies: string[];
-  garnishes: string[];
+export type IngredientsState = ItemObj[];
+
+interface ItemObj {
+  _id: string;
+  type: string;
 }

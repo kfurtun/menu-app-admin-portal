@@ -1,36 +1,24 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
-import { IngredientsState } from 'models';
 
-interface Payload {
-  itemType: string;
-  item: string;
+interface ItemObj {
+  _id: string;
+  type: string;
 }
+type InitialStateType = ItemObj[];
 
-const initialState: IngredientsState = {
-  pastas: [],
-  sauces: [],
-  meats: [],
-  veggies: [],
-  garnishes: [],
-};
+const initialState: InitialStateType = [];
 
 export const ingredientsSlice = createSlice({
   name: 'ingredients',
   initialState,
   reducers: {
-    addIngredient: (state, action: PayloadAction<Payload>) => {
-      if (state[action.payload.itemType].length < 1) {
-        state[action.payload.itemType].push(action.payload.item);
-      } else {
-        if (!state[action.payload.itemType].includes(action.payload.item)) {
-          state[action.payload.itemType].push(action.payload.item);
-        }
-      }
+    showIngredients: (state, action: PayloadAction<InitialStateType>) => {
+      return (state = action.payload);
     },
   },
 });
 
-export const { addIngredient } = ingredientsSlice.actions;
+export const { showIngredients } = ingredientsSlice.actions;
 export const selectIngredients = (state: RootState) => state.ingredients;
 export default ingredientsSlice.reducer;
