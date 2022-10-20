@@ -19,6 +19,8 @@ export const connectDb = async () => {
     process.env.INGREDIENTS_COLLECTION_NAME!
   );
 
+  ingredientsCollection.createIndex({ name: 1 }, { unique: true });
+
   collections.ingredients = ingredientsCollection;
 
   console.log(

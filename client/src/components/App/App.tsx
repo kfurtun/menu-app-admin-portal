@@ -4,20 +4,18 @@ import AddIngredient from 'components/Molecules/AddIngredient';
 import { showIngredients } from 'redux/states/ingredientsState';
 import Section from 'components/Molecules/Section';
 import IngredientsList from 'components/Molecules/IngredientsList';
-import getIngredients from 'components/Molecules/IngredientsList/getIngredients';
-// import { proxy } from 'constants/constants';
-// const axios = require('axios').default;
+import getApi from 'helpers/getApi';
 
 function App() {
   const showSections = useAppSelector((state) => state.sections);
   const ingredients = useAppSelector((state) => state.ingredients);
-  console.log(ingredients);
+
   const dispatch = useAppDispatch();
   // const [state, setState] = React.useState<string[]>([]);
-
+  console.log(ingredients);
   React.useEffect(() => {
-    getIngredients().then((data) => dispatch(showIngredients(data)));
-  }, []);
+    getApi('ingredients/all').then((data) => dispatch(showIngredients(data)));
+  }, [dispatch]);
 
   return (
     <div>

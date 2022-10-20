@@ -1,20 +1,29 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
-interface ItemObj {
+interface IngredientItem {
   _id: string;
   type: string;
+  name: string;
 }
-type InitialStateType = ItemObj[];
 
-const initialState: InitialStateType = [];
+type IngredientsState = { [key: string]: IngredientItem };
+
+const initialState: IngredientsState = {};
 
 export const ingredientsSlice = createSlice({
   name: 'ingredients',
   initialState,
   reducers: {
-    showIngredients: (state, action: PayloadAction<InitialStateType>) => {
-      return (state = action.payload);
+    showIngredients: (state, action: PayloadAction<IngredientItem[]>) => {
+      const tempState: IngredientsState = {};
+      action.payload.forEach((ingredient) => {
+        tempState[ingredient.type] = {
+          ...tempState[ingredient.type],
+          [ingredient.name]: ingredient,
+        };
+      });
+      return (state = tempState);
     },
   },
 });

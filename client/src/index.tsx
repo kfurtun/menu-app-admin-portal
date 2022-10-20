@@ -6,6 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 
+// (window as any).console = {
+//   log: (error: any) => {},
+// };
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );

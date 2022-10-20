@@ -2,9 +2,10 @@ import React from 'react';
 import Button from 'components/Atoms/Button';
 import InputBox from 'components/Atoms/InputBox';
 import Select from 'components/Atoms/Select';
-import IngredientsList from '../IngredientsList';
-import { useAppSelector } from 'redux/hooks';
-import postIngredients from './postIngredients';
+import { useAppDispatch } from 'redux/hooks';
+import postApi from 'helpers/postApi';
+import getApi from 'helpers/getApi';
+import { showIngredients } from 'redux/states/ingredientsState';
 
 interface StateTypes {
   input: string;
@@ -13,18 +14,22 @@ interface StateTypes {
 
 type OnChangeElement = HTMLInputElement | HTMLSelectElement;
 
+const ingredientsList: string[] = [
+  'Pastas',
+  'Sauces',
+  'Proteins',
+  'Veggies',
+  'Garnishes',
+];
+
 function AddIngredient(): JSX.Element {
-  const ingredientsState = useAppSelector((state) => state.ingredients);
+  const dispatch = useAppDispatch();
+  const [errorMessage, setErrorMessage] = React.useState<string>('');
 
   const [newItem, setNewItem] = React.useState<StateTypes>({
     input: '',
     select: 'pastas',
   });
-  const ingredientsList: string[] = [];
-
-  Object.keys(ingredientsState).forEach((ingredientType) =>
-    ingredientsList.push(ingredientType)
-  );
 
   const handleChange = (
     e: React.ChangeEvent<OnChangeElement>,
@@ -33,9 +38,22 @@ function AddIngredient(): JSX.Element {
     setNewItem({ ...newItem, [item]: e.target.value.toLowerCase() });
   };
 
-  const handleClick = () => {
-    if (newItem.input !== '')
-      postIngredients({ _id: newItem.input, type: newItem.select });
+  const handleClick = async () => {
+    if (newItem.input !== '') {
+      const postResult = await postApi('ingredients/new', {
+        name: newItem.input,
+        type: newItem.select,
+      });
+
+      if (postResult.status === 201) {
+        const newData = await getApi('ingredients/all');
+        dispatch(showIngredients(newData));
+        setErrorMessage('');
+        setNewItem({ ...newItem, input: '' });
+      } else if (postResult.status === 400) {
+        setErrorMessage('This ingredient already exists ');
+      }
+    }
   };
 
   return (
@@ -44,6 +62,7 @@ function AddIngredient(): JSX.Element {
         <InputBox
           placeholder="Add Item Here"
           handleChange={(e) => handleChange(e, 'input')}
+          value={newItem.input}
         />
         <Button text="Add" onButtonClick={handleClick} />
         <Select
@@ -51,7 +70,8 @@ function AddIngredient(): JSX.Element {
           handleChange={(e) => handleChange(e, 'select')}
         />
       </div>
-      <IngredientsList />
+
+      {errorMessage && <div>{errorMessage}</div>}
     </div>
   );
 }
