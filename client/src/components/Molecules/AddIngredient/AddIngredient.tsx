@@ -6,21 +6,13 @@ import { useAppDispatch } from 'redux/hooks';
 import postApi from 'helpers/postApi';
 import getApi from 'helpers/getApi';
 import { showIngredients } from 'redux/states/ingredientsState';
+import { OnChangeElement } from 'models/onChangeElement';
+import { ingredientsList } from 'constants/constants';
 
 interface StateTypes {
   input: string;
   select: string;
 }
-
-type OnChangeElement = HTMLInputElement | HTMLSelectElement;
-
-const ingredientsList: string[] = [
-  'Pastas',
-  'Sauces',
-  'Proteins',
-  'Veggies',
-  'Garnishes',
-];
 
 function AddIngredient(): JSX.Element {
   const dispatch = useAppDispatch();

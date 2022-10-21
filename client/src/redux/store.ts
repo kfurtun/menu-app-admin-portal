@@ -1,10 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { ingredientsReducer, sectionsReducer } from './states';
+import {
+  ingredientsReducer,
+  sectionsReducer,
+  addedItemReducer,
+} from './states';
 
 export const store = configureStore({
   reducer: {
     ingredients: ingredientsReducer,
     sections: sectionsReducer,
+    addedItem: addedItemReducer,
   },
 });
 

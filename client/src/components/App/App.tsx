@@ -5,6 +5,7 @@ import { showIngredients } from 'redux/states/ingredientsState';
 import Section from 'components/Molecules/Section';
 import IngredientsList from 'components/Molecules/IngredientsList';
 import getApi from 'helpers/getApi';
+import Menu from 'components/Molecules/Menu';
 
 function App() {
   const showSections = useAppSelector((state) => state.sections);
@@ -12,7 +13,7 @@ function App() {
 
   const dispatch = useAppDispatch();
   // const [state, setState] = React.useState<string[]>([]);
-  console.log(ingredients);
+
   React.useEffect(() => {
     getApi('ingredients/all').then((data) => dispatch(showIngredients(data)));
   }, [dispatch]);
@@ -31,7 +32,9 @@ function App() {
         show={showSections.menuItems}
         title="Menu Items"
         type="menuItems"
-      ></Section>
+      >
+        <Menu />
+      </Section>
     </div>
   );
 }

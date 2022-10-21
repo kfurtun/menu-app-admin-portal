@@ -16,7 +16,7 @@ function IngredientsList(): JSX.Element {
       dispatch(showIngredients(newData));
     }
   };
-  console.log(ingredientsList);
+
   return (
     <div>
       {Object.entries(ingredientsList).map(([key, value], index) => (
