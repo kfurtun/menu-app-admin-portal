@@ -7,21 +7,16 @@ import { ingredientsList } from 'constants/constants';
 import { useAppSelector, useAppDispatch } from 'redux/hooks';
 import { addIngredient, addName } from 'redux/states/addedItemState';
 
-// interface MenuItem {
-//   name: string;
-//   ingredients: string[];
-// }
-
 function MenuBody(): JSX.Element {
-  // const [newItem, setNewItem] = useState<string>('');
+  const allIngredients = useAppSelector((state) => state.ingredients);
+  const newItemName = useAppSelector((state) =>
+    typeof state.addedItem.name === 'string' ? state.addedItem.name : ''
+  );
+  const dispatch = useAppDispatch();
+
   const [selectedType, setSelectedType] = useState<string>(
     ingredientsList[0].toLowerCase()
   );
-  const allIngredients = useAppSelector((state) => state.ingredients);
-  const newItemName = useAppSelector((state) => state.addedItem.name);
-  console.log(allIngredients);
-  console.log(useAppSelector((state) => state.addedItem));
-  const dispatch = useAppDispatch();
 
   const handleInputChange = (e: React.ChangeEvent<OnChangeElement>) => {
     dispatch(addName(e.target.value));
@@ -35,7 +30,7 @@ function MenuBody(): JSX.Element {
     <div>
       <InputBox
         placeholder="Name of the item"
-        value={newItemName as string}
+        value={newItemName}
         handleChange={handleInputChange}
       />
       <Select selectList={ingredientsList} handleChange={handleSelectChange} />

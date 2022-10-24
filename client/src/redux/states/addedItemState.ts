@@ -8,15 +8,19 @@ interface Ingredient {
 }
 
 interface AddedIngredientState {
-  [key: string]: Ingredient | string;
+  name?: string;
+  ingredients: {
+    [key: string]: Ingredient;
+  };
 }
+// type AddedIngredientState= Record<string,Ingredient> & { name:string }
 
 interface Payload {
   type: string;
   name: string;
 }
 
-const initialState: AddedIngredientState = {};
+const initialState: AddedIngredientState = { ingredients: {} };
 
 export const addedItemSlice = createSlice({
   name: 'addedItem',
@@ -26,8 +30,8 @@ export const addedItemSlice = createSlice({
       state.name = action.payload;
     },
     addIngredient: (state, action: PayloadAction<Payload>) => {
-      state[action.payload.type] = {
-        ...(state[action.payload.type] as Ingredient),
+      state.ingredients[action.payload.type] = {
+        ...state.ingredients[action.payload.type],
         [action.payload.name]: action.payload,
       };
     },

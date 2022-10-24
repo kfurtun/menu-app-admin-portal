@@ -43,8 +43,10 @@ const connectDb = () => __awaiter(void 0, void 0, void 0, function* () {
     yield client.connect();
     const db = client.db(process.env.DB_NAME);
     const ingredientsCollection = db.collection(process.env.INGREDIENTS_COLLECTION_NAME);
+    const uniqueIdentifierCounterCollection = db.collection(process.env.UNIQUE_IDENTIFIER_COUNTER_COLLECTION_NAME);
     ingredientsCollection.createIndex({ name: 1 }, { unique: true });
     exports.collections.ingredients = ingredientsCollection;
+    exports.collections.uniqueIdentifierCounter = uniqueIdentifierCounterCollection;
     console.log(`Successfully connected to database: ${db.databaseName} and collection: ${ingredientsCollection.collectionName}`);
 });
 exports.connectDb = connectDb;

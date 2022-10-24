@@ -2,7 +2,10 @@ import * as mongoDB from 'mongodb';
 import * as dotenv from 'dotenv';
 
 // Global Variables
-export const collections: { ingredients?: mongoDB.Collection } = {};
+export const collections: {
+  ingredients?: mongoDB.Collection;
+  uniqueIdentifierCounter?: mongoDB.Collection;
+} = {};
 
 export const connectDb = async () => {
   dotenv.config();
@@ -19,9 +22,14 @@ export const connectDb = async () => {
     process.env.INGREDIENTS_COLLECTION_NAME!
   );
 
+  const uniqueIdentifierCounterCollection: mongoDB.Collection = db.collection(
+    process.env.UNIQUE_IDENTIFIER_COUNTER_COLLECTION_NAME!
+  );
+
   ingredientsCollection.createIndex({ name: 1 }, { unique: true });
 
   collections.ingredients = ingredientsCollection;
+  collections.uniqueIdentifierCounter = uniqueIdentifierCounterCollection;
 
   console.log(
     `Successfully connected to database: ${db.databaseName} and collection: ${ingredientsCollection.collectionName}`

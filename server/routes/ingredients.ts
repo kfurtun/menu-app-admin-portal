@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import { collections } from '../database/services/database.service';
 import Ingredients from '../database/models/ingredients';
+import { updateUniqueId } from '../utilities/updateUniqueId';
 
 const router = express.Router();
 
@@ -35,14 +36,25 @@ router.post(
         name: newIngredient.name,
       });
 
-      if (!isFound) {
-        const result = await collections.ingredients?.insertOne(newIngredient);
+      if (!isFound && collections.uniqueIdentifierCounter) {
+        const idResult = await updateUniqueId(
+          collections.uniqueIdentifierCounter,
+          1
+        );
 
-        result
-          ? res.status(201).json(newIngredient)
-          : res.status(400).json({
-              message: 'Failed to create a new ingredient.',
-            });
+        const id = idResult?.value?.COUNT;
+        if (idResult?.ok === 1) {
+          const result = await collections.ingredients?.insertOne({
+            ...newIngredient,
+            _id: id,
+          });
+
+          result
+            ? res.status(201).json(newIngredient)
+            : res.status(400).json({
+                message: 'Failed to create a new ingredient.',
+              });
+        }
       } else {
         res.status(400).json({ message: 'Failed to create a new ingredient.' });
       }
@@ -62,8 +74,14 @@ router.delete(
       const result = await collections.ingredients!.deleteOne({
         name: req.body.name,
       });
-      if (result) res.status(200).json({ message: 'Success' });
-      else res.status(400).json({ message: 'No success' });
+      if (result && collections.uniqueIdentifierCounter) {
+        const idResult = await updateUniqueId(
+          collections.uniqueIdentifierCounter,
+          -1
+        );
+
+        if (idResult?.ok === 1) res.status(200).json({ message: 'Success' });
+      } else res.status(400).json({ message: 'No success' });
     } catch (e) {
       res.status(500).json({ message: 'Error var' });
     }
