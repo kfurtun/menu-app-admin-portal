@@ -8,36 +8,50 @@ interface Ingredient {
 }
 
 interface AddedIngredientState {
-  name?: string;
+  name: string;
+  price: string;
   ingredients: {
     [key: string]: Ingredient;
   };
 }
-// type AddedIngredientState= Record<string,Ingredient> & { name:string }
 
-interface Payload {
-  type: string;
+// type AddedIngredientState = { ingredients: Record<string, Ingredient> } & {
+//   name: string;
+//   price: string;
+// };
+
+interface IngredientPayload {
+  kind: string;
   name: string;
 }
 
-const initialState: AddedIngredientState = { ingredients: {} };
+interface NewItemPayload {
+  propertyKey: string;
+  value: string;
+}
+
+const initialState: AddedIngredientState = {
+  name: '',
+  price: '',
+  ingredients: {},
+};
 
 export const addedItemSlice = createSlice({
   name: 'addedItem',
   initialState,
   reducers: {
-    addName: (state, action: PayloadAction<string>) => {
-      state.name = action.payload;
+    addDetails: (state, action: PayloadAction<NewItemPayload>) => {
+      return { ...state, [action.payload.propertyKey]: action.payload.value };
     },
-    addIngredient: (state, action: PayloadAction<Payload>) => {
-      state.ingredients[action.payload.type] = {
-        ...state.ingredients[action.payload.type],
+    addIngredient: (state, action: PayloadAction<IngredientPayload>) => {
+      state.ingredients[action.payload.kind] = {
+        ...state.ingredients[action.payload.kind],
         [action.payload.name]: action.payload,
       };
     },
   },
 });
 
-export const { addIngredient, addName } = addedItemSlice.actions;
+export const { addIngredient, addDetails } = addedItemSlice.actions;
 export const selectSections = (state: RootState) => state.addedItem;
 export default addedItemSlice.reducer;

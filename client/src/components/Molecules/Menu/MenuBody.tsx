@@ -5,21 +5,25 @@ import Select from 'components/Atoms/Select';
 import Button from 'components/Atoms/Button';
 import { ingredientsList } from 'constants/constants';
 import { useAppSelector, useAppDispatch } from 'redux/hooks';
-import { addIngredient, addName } from 'redux/states/addedItemState';
+import { addIngredient, addDetails } from 'redux/states/addedItemState';
 
 function MenuBody(): JSX.Element {
   const allIngredients = useAppSelector((state) => state.ingredients);
-  const newItemName = useAppSelector((state) =>
-    typeof state.addedItem.name === 'string' ? state.addedItem.name : ''
-  );
+  // const newItemName = useAppSelector((state) =>
+  //   typeof state.addedItem.name === 'string' ? state.addedItem.name : ''
+  // );
+  const newItem = useAppSelector((state) => state.addedItem);
   const dispatch = useAppDispatch();
 
   const [selectedType, setSelectedType] = useState<string>(
     ingredientsList[0].toLowerCase()
   );
 
-  const handleInputChange = (e: React.ChangeEvent<OnChangeElement>) => {
-    dispatch(addName(e.target.value));
+  const handleInputChange = (
+    e: React.ChangeEvent<OnChangeElement>,
+    propertyKey: string
+  ) => {
+    dispatch(addDetails({ propertyKey: propertyKey, value: e.target.value }));
   };
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -30,8 +34,14 @@ function MenuBody(): JSX.Element {
     <div>
       <InputBox
         placeholder="Name of the item"
-        value={newItemName}
-        handleChange={handleInputChange}
+        value={newItem.name}
+        handleChange={(e) => handleInputChange(e, 'name')}
+        type="number"
+      />
+      <InputBox
+        placeholder="Price of the item"
+        value={newItem.price}
+        handleChange={(e) => handleInputChange(e, 'price')}
       />
       <Select selectList={ingredientsList} handleChange={handleSelectChange} />
       {allIngredients[selectedType] &&
@@ -39,6 +49,7 @@ function MenuBody(): JSX.Element {
           <Button
             text={type.name}
             onButtonClick={() => dispatch(addIngredient(type))}
+            key={type.name}
           />
         ))}
     </div>
