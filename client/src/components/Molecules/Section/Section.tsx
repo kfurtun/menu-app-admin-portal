@@ -1,7 +1,6 @@
 import React from 'react';
 import { showSection } from 'redux/states/sectionState';
 import { useAppDispatch } from 'redux/hooks';
-import { icons } from 'utilities';
 import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';

@@ -1,7 +1,6 @@
 import React from 'react';
 import CloseButton from 'react-bootstrap/CloseButton';
 import { Wrapper, Background, Body } from './modal.styles';
-import { icons } from 'utilities/icons';
 
 interface Props {
   children?: React.ReactNode;
