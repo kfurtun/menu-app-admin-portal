@@ -12,7 +12,11 @@ function SampleMenuItem() {
         <div>{name}</div>
         <div>{isNaN(+price) ? 'Please enter a valid number' : price}</div>
       </div>
-      <div>ingredients</div>
+      <div>
+        {Object.values(ingredients).map((ingredient) =>
+          Object.values(ingredient).map((item) => <div>{item.name}</div>)
+        )}
+      </div>
     </div>
   );
 }

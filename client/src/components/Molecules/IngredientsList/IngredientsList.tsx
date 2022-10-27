@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppSelector, useAppDispatch } from 'redux/hooks';
-import Button from 'components/Atoms/Button';
+import Button from 'react-bootstrap/Button';
 import deleteApi from 'helpers/deleteApi';
 import getApi from 'helpers/getApi';
 import { showIngredients } from 'redux/states/ingredientsState';
@@ -25,10 +25,9 @@ function IngredientsList(): JSX.Element {
           {Object.values(value).map((ingredient) => (
             <div key={ingredient.name}>
               <div>{ingredient.name}</div>
-              <Button
-                text="Remove"
-                onButtonClick={() => handleClick(ingredient.name)}
-              />
+              <Button onClick={() => handleClick(ingredient.name)}>
+                Remove
+              </Button>
             </div>
           ))}
         </div>

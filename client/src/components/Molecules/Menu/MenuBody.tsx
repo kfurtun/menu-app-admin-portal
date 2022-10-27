@@ -2,16 +2,13 @@ import React, { useState } from 'react';
 import InputBox from 'components/Atoms/InputBox';
 import { OnChangeElement } from 'models/onChangeElement';
 import Select from 'components/Atoms/Select';
-import Button from 'components/Atoms/Button';
+import Button from 'react-bootstrap/Button';
 import { ingredientsList } from 'constants/constants';
 import { useAppSelector, useAppDispatch } from 'redux/hooks';
 import { addIngredient, addDetails } from 'redux/states/addedItemState';
 
 function MenuBody(): JSX.Element {
   const allIngredients = useAppSelector((state) => state.ingredients);
-  // const newItemName = useAppSelector((state) =>
-  //   typeof state.addedItem.name === 'string' ? state.addedItem.name : ''
-  // );
   const newItem = useAppSelector((state) => state.addedItem);
   const dispatch = useAppDispatch();
 
@@ -36,7 +33,6 @@ function MenuBody(): JSX.Element {
         placeholder="Name of the item"
         value={newItem.name}
         handleChange={(e) => handleInputChange(e, 'name')}
-        type="number"
       />
       <InputBox
         placeholder="Price of the item"
@@ -46,11 +42,9 @@ function MenuBody(): JSX.Element {
       <Select selectList={ingredientsList} handleChange={handleSelectChange} />
       {allIngredients[selectedType] &&
         Object.values(allIngredients[selectedType]).map((type) => (
-          <Button
-            text={type.name}
-            onButtonClick={() => dispatch(addIngredient(type))}
-            key={type.name}
-          />
+          <Button onClick={() => dispatch(addIngredient(type))} key={type.name}>
+            {type.name}
+          </Button>
         ))}
     </div>
   );

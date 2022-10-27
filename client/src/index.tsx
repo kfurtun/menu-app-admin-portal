@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import GlobalStyles from 'global';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // (window as any).console = {
 //   log: (error: any) => {},

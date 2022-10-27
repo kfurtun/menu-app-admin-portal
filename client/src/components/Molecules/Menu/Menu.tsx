@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Button from 'components/Atoms/Button';
+import Button from 'react-bootstrap/Button';
 import Modal from 'components/Atoms/Modal';
 import MenuBody from './MenuBody';
 import SampleMenuItem from './SampleMenuItem';
@@ -12,7 +12,7 @@ function Menu(): JSX.Element {
   };
   return (
     <div>
-      <Button text="Add new menu item" onButtonClick={handleClick} />
+      <Button onClick={handleClick}>Add new menu item</Button>
       {showModal && (
         <Modal open={showModal} setShowModal={setShowModal}>
           <MenuBody />

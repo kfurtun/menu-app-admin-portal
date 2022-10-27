@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../Button';
+import CloseButton from 'react-bootstrap/CloseButton';
 import { Wrapper, Background, Body } from './modal.styles';
 import { icons } from 'utilities/icons';
 
@@ -18,9 +18,8 @@ function Modal(props: Props): JSX.Element {
           <Background />
 
           <Body>
-            <Button
-              text={icons.open}
-              onButtonClick={() => {
+            <CloseButton
+              onClick={() => {
                 setShowModal((prev) => !prev);
               }}
             />

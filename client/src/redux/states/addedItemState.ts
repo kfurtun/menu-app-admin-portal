@@ -21,7 +21,7 @@ interface AddedIngredientState {
 // };
 
 interface IngredientPayload {
-  kind: string;
+  type: string;
   name: string;
 }
 
@@ -44,8 +44,8 @@ export const addedItemSlice = createSlice({
       return { ...state, [action.payload.propertyKey]: action.payload.value };
     },
     addIngredient: (state, action: PayloadAction<IngredientPayload>) => {
-      state.ingredients[action.payload.kind] = {
-        ...state.ingredients[action.payload.kind],
+      state.ingredients[action.payload.type] = {
+        ...state.ingredients[action.payload.type],
         [action.payload.name]: action.payload,
       };
     },
