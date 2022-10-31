@@ -1,7 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
-:root{};
+:root {
+    --active-button-background-color:#EBEBEB;
+    --primary-background-color:#FFFFFF;
+    --primary-item-color:#FF3216;
+};
 
 html, body, div, span, applet, object, iframe,
     h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -29,6 +33,12 @@ html, body, div, span, applet, object, iframe,
     article, aside, details, figcaption, figure,
     footer, header, hgroup, menu, nav, section {
         display: block;
+    }
+
+    body { min-height: 100vh; }
+
+    button{
+       cursor:pointer;
     }
 
 `;

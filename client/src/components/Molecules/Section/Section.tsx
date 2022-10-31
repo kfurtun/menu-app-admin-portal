@@ -1,13 +1,13 @@
 import React from 'react';
 import { showSection } from 'redux/states/sectionState';
 import { useAppDispatch } from 'redux/hooks';
-import Button from 'react-bootstrap/Button';
+import Button from 'components/Atoms/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 interface Props {
-  show: Boolean;
+  show: boolean;
   title: string;
   type: string;
   children?: React.ReactNode;
@@ -25,13 +25,16 @@ function Section(props: Props): JSX.Element {
     <div>
       <div>
         <span>{title}</span>
-        <Button onClick={handleClick} variant="light" size="sm">
-          {show ? (
-            <FontAwesomeIcon icon={faXmark} />
-          ) : (
-            <FontAwesomeIcon icon={faPlus} />
-          )}
-        </Button>
+        <Button
+          onClick={handleClick}
+          text={
+            show ? (
+              <FontAwesomeIcon icon={faXmark} />
+            ) : (
+              <FontAwesomeIcon icon={faPlus} />
+            )
+          }
+        />
       </div>
       {show && children}
     </div>

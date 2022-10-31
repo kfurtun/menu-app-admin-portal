@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import InputBox from 'components/Atoms/InputBox';
 import { OnChangeElement } from 'models/onChangeElement';
 import Select from 'components/Atoms/Select';
-import Button from 'react-bootstrap/Button';
+import Button from 'components/Atoms/Button';
 import { ingredientsList } from 'constants/constants';
 import { useAppSelector, useAppDispatch } from 'redux/hooks';
 import { addIngredient, addDetails } from 'redux/states/addedItemState';
@@ -42,9 +42,11 @@ function MenuBody(): JSX.Element {
       <Select selectList={ingredientsList} handleChange={handleSelectChange} />
       {allIngredients[selectedType] &&
         Object.values(allIngredients[selectedType]).map((type) => (
-          <Button onClick={() => dispatch(addIngredient(type))} key={type.name}>
-            {type.name}
-          </Button>
+          <Button
+            onClick={() => dispatch(addIngredient(type))}
+            key={type.name}
+            text={type.name}
+          />
         ))}
     </div>
   );

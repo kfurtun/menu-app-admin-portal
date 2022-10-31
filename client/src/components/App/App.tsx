@@ -6,6 +6,7 @@ import Section from 'components/Molecules/Section';
 import IngredientsList from 'components/Molecules/IngredientsList';
 import getApi from 'helpers/getApi';
 import Menu from 'components/Molecules/Menu';
+import PageTemplate from 'components/Organisms/PageTemplate';
 
 function App() {
   const showSections = useAppSelector((state) => state.sections);
@@ -20,7 +21,7 @@ function App() {
 
   return (
     <div>
-      <Section
+      {/* <Section
         show={showSections.ingredients}
         title="Ingredients"
         type="ingredients"
@@ -34,7 +35,8 @@ function App() {
         type="menuItems"
       >
         <Menu />
-      </Section>
+      </Section> */}
+      <PageTemplate>{''}</PageTemplate>
     </div>
   );
 }

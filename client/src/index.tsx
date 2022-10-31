@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
-import GlobalStyles from 'global';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import GlobalStyles from 'theme';
+import Router from 'router/router';
 
 // (window as any).console = {
 //   log: (error: any) => {},
@@ -19,7 +18,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <GlobalStyles />
-      <App />
+      <Router />
     </Provider>
   </React.StrictMode>
 );

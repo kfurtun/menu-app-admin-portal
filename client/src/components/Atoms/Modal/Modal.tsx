@@ -1,11 +1,11 @@
 import React from 'react';
-import CloseButton from 'react-bootstrap/CloseButton';
+import Button from 'components/Atoms/Button';
 import { Wrapper, Background, Body } from './modal.styles';
 
 interface Props {
   children?: React.ReactNode;
-  open: Boolean;
-  setShowModal: (value: (prevState: Boolean) => Boolean) => void;
+  open: boolean;
+  setShowModal: (value: (prevState: boolean) => boolean) => void;
 }
 
 function Modal(props: Props): JSX.Element {
@@ -17,10 +17,11 @@ function Modal(props: Props): JSX.Element {
           <Background />
 
           <Body>
-            <CloseButton
+            <Button
               onClick={() => {
                 setShowModal((prev) => !prev);
               }}
+              text="X"
             />
             {children}
           </Body>

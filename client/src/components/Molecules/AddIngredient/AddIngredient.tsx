@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
+import Button from 'components/Atoms/Button';
 import InputBox from 'components/Atoms/InputBox';
 import Select from 'components/Atoms/Select';
 import { useAppDispatch } from 'redux/hooks';
@@ -56,7 +56,7 @@ function AddIngredient(): JSX.Element {
           handleChange={(e) => handleChange(e, 'input')}
           value={newItem.input}
         />
-        <Button onClick={handleClick}>Add</Button>
+        <Button onClick={handleClick} text="Add" />
         <Select
           selectList={ingredientsList}
           handleChange={(e) => handleChange(e, 'select')}
