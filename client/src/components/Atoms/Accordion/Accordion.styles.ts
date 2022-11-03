@@ -12,11 +12,22 @@ export const Container = styled.div`
 export const MainContainer = styled.button`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
-  height: ${pxToRem(64)};
+  height: ${pxToRem(52)};
   background: var(--primary-background-color);
   border: none;
+  font-size: var(--primary-font-size);
+  padding: ${pxToRem(16)} ${pxToRem(24)};
+  &:hover {
+    color: var(--primary-item-color);
+  }
+`;
+
+export const LogoTitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${pxToRem(16)};
 `;
 
 export const AccordionContainer = styled.div`
@@ -31,11 +42,12 @@ export const AccordionContainer = styled.div`
 
 export const AccordionItem = styled(NavLink)`
   width: 100%;
-  height: ${pxToRem(64)};
-  line-height: ${pxToRem(64)};
+  height: ${pxToRem(52)};
+  line-height: ${pxToRem(52)};
   display: block;
   text-align: center;
   text-decoration: none;
+  font-size: var(--primary-font-size);
   &:hover {
     color: var(--primary-item-color);
   }

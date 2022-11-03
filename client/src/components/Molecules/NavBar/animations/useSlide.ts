@@ -2,7 +2,7 @@ import { useSpring } from 'react-spring';
 
 function useSlide(open: boolean) {
   return useSpring({
-    marginLeft: open ? '30%' : '0%',
+    marginLeft: open ? '255px' : '0px',
   });
 }
 

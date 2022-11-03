@@ -4,11 +4,15 @@ import {
   MainContainer,
   AccordionContainer,
   AccordionItem,
+  LogoTitleContainer,
 } from './Accordion.styles';
 import { Item } from 'data/data';
-import useSlide from './animations/useSlide';
+import { useRotateCaret, useSlide } from './animations';
 import { animated } from 'react-spring';
 import useMeasure from 'react-use-measure';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleUp } from '@fortawesome/free-solid-svg-icons';
+import Icon from 'components/Atoms/Icon';
 
 interface Data {
   logo: string;
@@ -20,29 +24,41 @@ interface Props {
   onClick: () => void;
   open: boolean;
   data: Data;
+  category: string;
 }
 
 function Accordion(props: Props) {
-  const { data, onClick, open } = props;
+  const { data, onClick, open, category } = props;
   const [ref, { height }] = useMeasure();
   const accordionAnimation = useSlide(open, height);
+  const caretAnimation = useRotateCaret(open);
 
   return (
     <Container>
       <MainContainer onClick={onClick}>
-        <div>{data.logo}</div>
-        <div>{data.text}</div>
-        <div>caret</div>
+        <LogoTitleContainer>
+          <span>
+            <Icon name={data.logo} />
+          </span>
+          <span>{data.text}</span>
+        </LogoTitleContainer>
+        {!data.items.main && (
+          <animated.div style={caretAnimation}>
+            <FontAwesomeIcon icon={faAngleUp} />
+          </animated.div>
+        )}
       </MainContainer>
-      <animated.div style={accordionAnimation}>
-        <AccordionContainer ref={ref}>
-          {Object.values(data.items).map((item) => (
-            <AccordionItem to="/" key={item.text}>
-              {item.text}
-            </AccordionItem>
-          ))}
-        </AccordionContainer>
-      </animated.div>
+      {!data.items.main && (
+        <animated.div style={accordionAnimation}>
+          <AccordionContainer ref={ref}>
+            {Object.values(data.items).map((item) => (
+              <AccordionItem to={`/${category}/${item.url}`} key={item.text}>
+                {item.text}
+              </AccordionItem>
+            ))}
+          </AccordionContainer>
+        </animated.div>
+      )}
     </Container>
   );
 }

@@ -23,7 +23,7 @@ export const data = {
       text: 'Dashboard',
       items: {
         brand: {
-          url: '',
+          url: 'brand-name',
           text: 'Brand name',
           isLink: true,
         },
@@ -56,6 +56,17 @@ export const data = {
         productDetail: {
           url: 'product-detail',
           text: 'Product Detail',
+          isLink: true,
+        },
+      },
+    },
+    orders: {
+      logo: 'orders',
+      text: 'Orders',
+      items: {
+        main: {
+          url: 'orders',
+          text: 'Orders',
           isLink: true,
         },
       },

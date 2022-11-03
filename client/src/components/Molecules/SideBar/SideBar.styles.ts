@@ -3,7 +3,7 @@ import Button from 'components/Atoms/Button';
 import pxToRem from 'theme/pxToRem';
 
 export const Container = styled.div`
-  width: 30%;
+  width: ${pxToRem(255)};
   height: 100vh;
   background: grey;
   position: fixed;
@@ -12,7 +12,7 @@ export const Container = styled.div`
 
 export const Header = styled.div`
   width: 100%;
-  height: 8%;
+  height: ${pxToRem(78)};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,15 +30,4 @@ export const SideBarItemContainer = styled.div`
   flex-direction: column;
   elign-items: center;
   width: 100%;
-`;
-
-export const SideBarItem = styled(Button)`
-  width: 100%;
-  height: ${pxToRem(64)};
-  background: var(--primary-background-color);
-  border: none;
-  color: red;
-  &:hover {
-    background: var(--active-button-background-color);
-  }
 `;
