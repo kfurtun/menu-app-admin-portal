@@ -41,7 +41,6 @@ function SideBar(props: Props) {
     isMain: boolean,
     url?: string
   ) => {
-    console.log(url);
     if (isMain) navigate(`/${url}`);
     else
       setAccordionOpen((prev) => ({
@@ -50,7 +49,8 @@ function SideBar(props: Props) {
   };
 
   // const buttonRef = createRef<HTMLButtonElement>();
-  // let location = useLocation();
+  let location = useLocation();
+
   // let match = useMatch('/asd');
 
   return (
@@ -77,6 +77,7 @@ function SideBar(props: Props) {
             category={convertToLowerCase(item.text)}
             data={item}
             key={item.text}
+            isActive={location.pathname.includes(convertToLowerCase(item.text))}
           />
         ))}
       </SideBarItemContainer>

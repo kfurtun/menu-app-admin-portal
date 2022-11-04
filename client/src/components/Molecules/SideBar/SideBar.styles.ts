@@ -5,9 +5,10 @@ import pxToRem from 'theme/pxToRem';
 export const Container = styled.div`
   width: ${pxToRem(255)};
   height: 100vh;
-  background: grey;
+  background: var(--active-button-background-color);
   position: fixed;
   top: 0;
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
 `;
 
 export const Header = styled.div`
@@ -28,6 +29,6 @@ export const HeaderButton = styled(Button)`
 export const SideBarItemContainer = styled.div`
   display: flex;
   flex-direction: column;
-  elign-items: center;
+  align-items: center;
   width: 100%;
 `;

@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import pxToRem from 'theme/pxToRem';
 
+interface MainContainerProps {
+  isActive: boolean;
+}
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -9,7 +13,7 @@ export const Container = styled.div`
   width: 100%;
 `;
 
-export const MainContainer = styled.button`
+export const MainContainer = styled.button<MainContainerProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -22,6 +26,7 @@ export const MainContainer = styled.button`
   &:hover {
     color: var(--primary-item-color);
   }
+  color: ${(props) => props.isActive && 'var(--primary-item-color)'};
 `;
 
 export const LogoTitleContainer = styled.div`

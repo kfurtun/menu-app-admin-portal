@@ -5,7 +5,7 @@ export default createGlobalStyle`
     --active-button-background-color:#EBEBEB;
     --primary-background-color:#FFFFFF;
     --primary-item-color:#FF3216;
-    --primary-font-size:16
+    --primary-font-size:14
 };
 
 html, body, div, span, applet, object, iframe,

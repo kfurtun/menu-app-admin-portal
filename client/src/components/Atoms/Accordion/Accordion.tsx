@@ -25,17 +25,18 @@ interface Props {
   open: boolean;
   data: Data;
   category: string;
+  isActive: boolean;
 }
 
 function Accordion(props: Props) {
-  const { data, onClick, open, category } = props;
+  const { data, onClick, open, category, isActive } = props;
   const [ref, { height }] = useMeasure();
   const accordionAnimation = useSlide(open, height);
   const caretAnimation = useRotateCaret(open);
 
   return (
     <Container>
-      <MainContainer onClick={onClick}>
+      <MainContainer onClick={onClick} isActive={isActive}>
         <LogoTitleContainer>
           <span>
             <Icon name={data.logo} />
@@ -52,7 +53,11 @@ function Accordion(props: Props) {
         <animated.div style={accordionAnimation}>
           <AccordionContainer ref={ref}>
             {Object.values(data.items).map((item) => (
-              <AccordionItem to={`/${category}/${item.url}`} key={item.text}>
+              <AccordionItem
+                to={`/${category}/${item.url}`}
+                key={item.text}
+                ref={ref}
+              >
                 {item.text}
               </AccordionItem>
             ))}
