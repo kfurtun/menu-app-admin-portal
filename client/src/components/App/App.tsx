@@ -36,7 +36,7 @@ function App() {
       >
         <Menu />
       </Section> */}
-      <PageTemplate>{''}</PageTemplate>
+      {/* <PageTemplate>{''}</PageTemplate> */}
     </div>
   );
 }

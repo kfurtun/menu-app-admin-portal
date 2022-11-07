@@ -1,3 +1,5 @@
+import Dashboard from 'components/Organisms/Dashboard';
+
 export interface Data {
   [key: string]: {
     [key: string]: {
@@ -14,6 +16,7 @@ export interface Item {
   url: string;
   text: string;
   isLink: boolean;
+  component?: JSX.Element;
 }
 
 export const data = {
@@ -26,6 +29,7 @@ export const data = {
           url: 'brand-name',
           text: 'Brand name',
           isLink: true,
+          component: <Dashboard />,
         },
       },
     },
