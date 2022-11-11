@@ -13,6 +13,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import pxToRem from 'theme/pxToRem';
+import { roots } from 'theme/global';
 
 ChartJS.register(
   CategoryScale,
@@ -24,25 +25,26 @@ ChartJS.register(
   Legend,
   Filler
 );
-
-export const options = {
+const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'top' as const,
+      display: false,
     },
-    title: {
-      display: true,
-      text: 'Chart.js Line Chart',
+    tooltip: {
+      enabled: false,
     },
   },
+
   scales: {
     x: {
+      display: false,
       grid: {
         display: false,
       },
     },
     y: {
+      display: false,
       grid: {
         display: false,
       },
@@ -53,30 +55,36 @@ export const options = {
 
 const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Dataset 1',
-      data: [100, 200, 320, 180, 500, 430, 900],
-      borderColor: 'red',
-      backgroundColor: 'red',
-      fill: true,
-    },
-  ],
-};
+interface Props {
+  borderColor: string;
+  backgroundColor: string;
+}
 
-export function LineChart() {
+export function LineChart(props: Props) {
+  const { borderColor, backgroundColor } = props;
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: '',
+        data: [100, 200, 320, 180, 500, 430, 900],
+        borderColor: borderColor as string,
+        backgroundColor: `${backgroundColor}20` as string,
+        fill: true,
+        pointRadius: 0,
+      },
+    ],
+  };
   return (
-    <Container>
+    <ChartContainer>
       <Line options={options} data={data} />
-    </Container>
+    </ChartContainer>
   );
 }
 
 export default LineChart;
 
-const Container = styled.div`
-  width: ${pxToRem(350)};
-  height: ${pxToRem(350)};
+const ChartContainer = styled.div`
+  width: 100%;
+  height: ${pxToRem(60)};
 `;

@@ -1,11 +1,32 @@
-import LineChart from 'components/Atoms/Charts/LineChart';
+import LineChartBox from 'components/Molecules/LineChartBox';
 import PageTemplate from '../PageTemplate';
+import { Container, ChartContainer } from './Dashboard.styles';
+import { roots } from 'theme/global';
 
 function Dashboard() {
-  console.log('zaa');
   return (
     <PageTemplate>
-      <LineChart />
+      <Container>
+        <ChartContainer>
+          {' '}
+          <LineChartBox
+            borderColor={roots.primaryItemColor as string}
+            backgroundColor={roots.primaryItemColor as string}
+          />
+          <LineChartBox
+            borderColor={roots.primaryItemColor as string}
+            backgroundColor={roots.primaryItemColor as string}
+          />
+          <LineChartBox
+            borderColor={roots.primaryItemColor as string}
+            backgroundColor={roots.primaryItemColor as string}
+          />
+          <LineChartBox
+            borderColor={roots.primaryItemColor as string}
+            backgroundColor={roots.primaryItemColor as string}
+          />
+        </ChartContainer>
+      </Container>
     </PageTemplate>
   );
 }

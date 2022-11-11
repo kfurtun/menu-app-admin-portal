@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import SideBar from 'components/Molecules/SideBar';
 import NavBar from 'components/Molecules/NavBar';
-import { BodyContainer } from './PageTemplate.styles';
+import { Container, BodyContainer } from './PageTemplate.styles';
 import useSlide from './animations/useSlide';
 import { animated } from 'react-spring';
+import QuickBar from 'components/Molecules/QuickBar';
 
 interface Props {
   children: React.ReactNode;
@@ -15,12 +16,7 @@ function PageTemplate(props: Props) {
 
   const sideBarAnimation = useSlide(isSideBarOpen);
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-      }}
-    >
+    <Container>
       <BodyContainer as={animated.div} style={sideBarAnimation}>
         <NavBar
           setIsSideBarOpen={setIsSideBarOpen}
@@ -29,7 +25,8 @@ function PageTemplate(props: Props) {
         {children}
       </BodyContainer>
       <SideBar isSideBarOpen={isSideBarOpen}></SideBar>
-    </div>
+      <QuickBar />
+    </Container>
   );
 }
 

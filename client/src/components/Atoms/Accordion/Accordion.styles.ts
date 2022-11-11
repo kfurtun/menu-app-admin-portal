@@ -26,7 +26,8 @@ export const MainContainer = styled.button<MainContainerProps>`
   &:hover {
     color: var(--primary-item-color);
   }
-  color: ${(props) => props.isActive && 'var(--primary-item-color)'};
+  color: ${(props) =>
+    props.isActive ? 'var(--primary-item-color)' : 'var(--primary-text-color)'};
 `;
 
 export const LogoTitleContainer = styled.div`
@@ -56,4 +57,5 @@ export const AccordionItem = styled(NavLink)`
   &:hover {
     color: var(--primary-item-color);
   }
+  color: var(--primary-text-color);
 `;

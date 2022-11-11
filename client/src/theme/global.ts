@@ -1,12 +1,27 @@
 import { createGlobalStyle } from 'styled-components';
 
-export default createGlobalStyle`
-:root {
-    --active-button-background-color:#EBEBEB;
-    --primary-background-color:#FFFFFF;
-    --primary-item-color:#FF3216;
-    --primary-font-size:14
+interface Roots {
+  [key: string]: string | number;
+}
+
+export const roots: Roots = {
+  activeButtonBackgroundColor: '#EBEBEB',
+  primaryBackgroundColor: '#FFFFFF',
+  primaryItemColor: '#FF3216',
+  primaryFontSize: 14,
+  primaryTextColor: '#212529',
 };
+
+export default createGlobalStyle`
+
+:root {
+    --active-button-background-color:${roots.activeButtonBackgroundColor};
+    --primary-background-color:${roots.primaryBackgroundColor};
+    --primary-item-color:${roots.primaryItemColor};
+    --primary-font-size:${roots.primaryFontSize};
+    --primary-text-color:${roots.primaryTextColor}
+};
+
 
 html, body, div, span, applet, object, iframe,
     h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -36,7 +51,7 @@ html, body, div, span, applet, object, iframe,
         display: block;
     }
 
-    body { min-height: 100vh; }
+    body { min-height: 100vh}
 
     button{
        cursor:pointer;
