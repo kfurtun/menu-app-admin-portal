@@ -13,7 +13,6 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import pxToRem from 'theme/pxToRem';
-import { roots } from 'theme/global';
 
 ChartJS.register(
   CategoryScale,
@@ -35,7 +34,6 @@ const options = {
       enabled: false,
     },
   },
-
   scales: {
     x: {
       display: false,
@@ -84,7 +82,17 @@ export function LineChart(props: Props) {
 
 export default LineChart;
 
+interface ChartContainer {
+  backgroundColor: string;
+}
+
 const ChartContainer = styled.div`
   width: 100%;
   height: ${pxToRem(60)};
+  position: relative;
+
+  canvas {
+    height: 62px !important;
+    width: calc(100% + 2px) !important;
+  }
 `;

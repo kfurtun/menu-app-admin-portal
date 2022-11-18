@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 import Button from 'components/Atoms/Button';
 import pxToRem from 'theme/pxToRem';
+import { mediaQueries } from 'theme/mediaQueries';
 
 export const Container = styled.div`
   width: ${pxToRem(255)};
-  height: 100vh;
+  height: 100%;
   background: var(--active-button-background-color);
   position: fixed;
   top: 0;
+  z-index: 1000;
   box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
 `;
 

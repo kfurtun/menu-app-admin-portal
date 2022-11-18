@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { mediaQueries } from 'theme/mediaQueries';
 import pxToRem from 'theme/pxToRem';
 
 interface PercentageInfoProps {
@@ -8,10 +9,18 @@ interface PercentageInfoProps {
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  // width: ${pxToRem(260)};
-  width: 24%;
+  width: 100%;
   height: ${pxToRem(140)};
-  border: solid 1px red;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 6px 1px rgb(69 65 78 / 10%);
+  overflow: hidden;
+  ${mediaQueries.small} {
+    width: 48%;
+  }
+
+  ${mediaQueries.large} {
+    width: 24%;
+  }
 `;
 
 export const InfoContainer = styled.div`

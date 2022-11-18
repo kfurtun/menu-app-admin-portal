@@ -8,7 +8,6 @@ function Dashboard() {
     <PageTemplate>
       <Container>
         <ChartContainer>
-          {' '}
           <LineChartBox
             borderColor={roots.primaryItemColor as string}
             backgroundColor={roots.primaryItemColor as string}
