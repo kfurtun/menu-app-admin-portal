@@ -1,7 +1,14 @@
 import { createGlobalStyle } from 'styled-components';
+import pxToRem from 'theme/pxToRem';
 
 interface Roots {
-  [key: string]: string | number;
+  activeButtonBackgroundColor: string;
+  primaryBackgroundColor: string;
+  primaryItemColor: string;
+  primaryFontSize: number;
+  primaryTextColor: string;
+  headerFontSize: number;
+  primaryHoverColor: string;
 }
 
 export const roots: Roots = {
@@ -10,6 +17,8 @@ export const roots: Roots = {
   primaryItemColor: '#FF3216',
   primaryFontSize: 14,
   primaryTextColor: '#212529',
+  headerFontSize: 16,
+  primaryHoverColor: '#b41600',
 };
 
 export default createGlobalStyle`
@@ -18,8 +27,10 @@ export default createGlobalStyle`
     --active-button-background-color:${roots.activeButtonBackgroundColor};
     --primary-background-color:${roots.primaryBackgroundColor};
     --primary-item-color:${roots.primaryItemColor};
-    --primary-font-size:${roots.primaryFontSize};
-    --primary-text-color:${roots.primaryTextColor}
+    --primary-font-size:${pxToRem(roots.primaryFontSize)};
+    --primary-text-color:${roots.primaryTextColor};
+    --header-font-size:${pxToRem(roots.headerFontSize)};
+    --primary-hover-color:${roots.primaryHoverColor}
 };
 
 

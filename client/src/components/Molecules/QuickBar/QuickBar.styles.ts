@@ -10,7 +10,7 @@ export const Container = styled.div`
   width: ${pxToRem(60)};
   border-left: 1px solid rgba(0, 0, 0, 0.1);
   display: none;
-  ${mediaQueries.medium} {
+  ${mediaQueries.large} {
     display: block;
   }
 `;

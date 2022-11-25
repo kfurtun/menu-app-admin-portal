@@ -1,7 +1,12 @@
 import LineChartBox from 'components/Molecules/LineChartBox';
 import PageTemplate from '../PageTemplate';
-import { Container, ChartContainer } from './Dashboard.styles';
+import {
+  Container,
+  ChartContainer,
+  OrdersAndRevenueContainer,
+} from './Dashboard.styles';
 import { roots } from 'theme/global';
+import RecentOrdersTable from 'components/Molecules/RecentOrdersTable';
 
 function Dashboard() {
   return (
@@ -25,6 +30,10 @@ function Dashboard() {
             backgroundColor={roots.primaryItemColor as string}
           />
         </ChartContainer>
+        <OrdersAndRevenueContainer>
+          <RecentOrdersTable />
+          <RecentOrdersTable />
+        </OrdersAndRevenueContainer>
       </Container>
     </PageTemplate>
   );

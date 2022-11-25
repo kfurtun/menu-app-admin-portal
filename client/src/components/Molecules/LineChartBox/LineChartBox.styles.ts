@@ -14,11 +14,11 @@ export const Container = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 6px 1px rgb(69 65 78 / 10%);
   overflow: hidden;
-  ${mediaQueries.small} {
+  ${mediaQueries.medium} {
     width: 48%;
   }
 
-  ${mediaQueries.large} {
+  ${mediaQueries.xLarge} {
     width: 24%;
   }
 `;

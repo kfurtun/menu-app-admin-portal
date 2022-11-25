@@ -7,9 +7,10 @@ interface MediaQueries {
 }
 
 export const breakPoints: BreakPoints = {
-  small: 768,
-  medium: 1024,
-  large: 1200,
+  small: 540,
+  medium: 768,
+  large: 1024,
+  xLarge: 1200,
 };
 
 const createMediaQuery = (minWidth: number): string => {
@@ -20,4 +21,5 @@ export const mediaQueries: MediaQueries = {
   small: createMediaQuery(breakPoints.small),
   medium: createMediaQuery(breakPoints.medium),
   large: createMediaQuery(breakPoints.large),
+  xLarge: createMediaQuery(breakPoints.xLarge),
 };

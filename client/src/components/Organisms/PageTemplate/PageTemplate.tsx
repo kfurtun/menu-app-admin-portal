@@ -25,8 +25,8 @@ function PageTemplate(props: Props) {
 
   useEffect(() => {
     if (
-      (width >= breakPoints.medium && prevWidth < breakPoints.medium) ||
-      (width < breakPoints.medium && prevWidth >= breakPoints.medium)
+      (width >= breakPoints.large && prevWidth < breakPoints.large) ||
+      (width < breakPoints.large && prevWidth >= breakPoints.large)
     )
       setIsSideBarOpen((prev) => !prev);
   }, [width]);

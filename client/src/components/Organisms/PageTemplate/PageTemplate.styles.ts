@@ -16,7 +16,7 @@ export const BodyContainer = styled.div`
   height: 100%;
   margin-right: 0;
 
-  ${mediaQueries.medium} {
+  ${mediaQueries.large} {
     margin-right: ${pxToRem(60)};
   }
 `;
